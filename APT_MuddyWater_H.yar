@@ -21,10 +21,11 @@ rule APT_MuddyWater_Doc_Oct10_1 {
       $path2 = "C:\\Users\\leo\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii wide
       $path3 = "C:\\Users\\Vendetta\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii wide
       $path4 = "C:\\Users\\Turk\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii wide
-      $haxpath = {43  3A  5C  55  73  65  72  73  5C  70  6F  6F  70
-                  61  6B  5C  41  70  70  44  61  74  61  5C  4C  6F  63  61  6C  5C  54  65  6D  70
-                  5C  57  6F  72  64  38  2E  30  5C  4D  53  46  6F  72  6D  73  2E  65  78  64}
+      $path5 = "C:\\Users\\poopak\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii
+      $path6 = "C:\\Users\\leo\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii
+      $path7 = "C:\\Users\\Vendetta\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii
+      $path8 = "C:\\Users\\Turk\\AppData\\Local\\Temp\\Word8.0\\MSForms.exd" ascii
    condition:
-      uint16(0) == 0xcfd0 and (1 of ($path*) or $haxpath)
+      uint16(0) == 0xcfd0 and (1 of ($path*))
 }
 
