@@ -44,3 +44,16 @@ rule APT_Darkhotel_PE_Konni_Oct10
     condition:
         ( uint16(0) == 0x5a4d and filesize < 800KB and ( 3 of ($s*) ) ) or ( ($pdb1))
 }
+/*
+iocs:
+"bluemountain.1apps.com" wide ascii
+*/
+rule APT_Darkhotel_DOC_Sep21{
+    meta:
+        description = "Darkhotel use VBA script to download malware"
+        
+    strings:
+        $str1 = "copy /Y %windir%\\System32\\certutil.exe %TEMP%\\ct.exe" wide ascii
+    condition:
+        $str1
+}

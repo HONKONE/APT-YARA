@@ -127,3 +127,19 @@ rule APT_MuddyWater_Xls_Oct10_17 {
       uint16(0) == 0xcfd0 and ((#str1 > 10 and #str2 > 30 and #str3 > 60) and (all of ($func*))) and $str
 }
 
+rule APT_MaybeMuddyWater_PS2EXE_Oct10_17 {
+   meta:
+      description = "Detects malicious document used by MuddyWater and execute by PS2EXE"
+      license = "https://researchcenter.paloaltonetworks.com/2017/11/unit42-muddying-the-water-targeted-attacks-in-the-middle-east/"
+      author = "HONKONE"
+      date = "2018-10-17"
+   strings:
+      $str1 = "PS2EXE" wide ascii
+      $code1 = "KeyAvailable/Get" wide ascii
+   condition:
+      uint16(0) == 0x5A4D and $str1 and $code1
+}
+
+
+
+
