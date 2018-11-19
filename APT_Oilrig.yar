@@ -21,7 +21,7 @@ rule APT_Oilrig_Feb2_OopsIE : RAT_OopsIE
 }
 
 
-rule APT_Oilrig_Feb18_abufance : Feb16_Oilrig_XLS_OR_DOC
+rule APT_Oilrig_Feb18_obfuscation : Feb16_Oilrig_XLS_OR_DOC
 {
     meta:
         author = "HONKONE"
