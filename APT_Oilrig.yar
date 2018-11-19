@@ -21,3 +21,15 @@ rule APT_Oilrig_Feb2_OopsIE : RAT_OopsIE
 }
 
 
+rule APT_Oilrig_Feb18_abufance : Feb16_Oilrig_XLS_OR_DOC
+{
+    meta:
+        author = "HONKONE"
+        description = "Oilrig new phishing XLS"
+        date = "2018-11-19"
+    strings:
+        $FileName_1 = "C:\\ProgramData\\WindowsAppPool\\AppPool.ps1" nocase ascii
+        $FileName_2 = "C:\\ProgramData\\WindowsAppPool\\AppPool.vbs" nocase ascii
+    condition:
+        all of ($FileName_*)
+}
