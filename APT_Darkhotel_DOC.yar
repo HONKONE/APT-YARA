@@ -46,8 +46,9 @@ rule APT_Darkhotel_PE_Konni_Oct10
 }
 /*
 iocs:
-"bluemountain.1apps.com" wide ascii
+bluemountain.1apps.com wide ascii
 */
+
 rule APT_Darkhotel_DOC_Sep21{
     meta:
         description = "Darkhotel use VBA script to download malware"

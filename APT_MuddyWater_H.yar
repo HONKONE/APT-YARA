@@ -141,5 +141,46 @@ rule APT_MaybeMuddyWater_PS2EXE_Oct10_17 {
 }
 
 
+rule MuddyWater_doc_dropper {
+	meta:
+		description = "Yara Rule for MuddyWater document dropper"
+		author = "Yoroi ZLab - Cybaze"
+		last_updated = "2018-12-05"
+		tlp = "white"
+		category = "informational"
+	strings:
+		$header ={D0 CF 11 E0 A1 B1 1A E1}
+		$a = {D3 60 25 12 C4 C1 41 B1 65 E3 39 08 8B}
+		$b = {B1 B8 22 60 2B 2E 62 59 58 11}
+	condition:
+		 all of them
+}
 
+rule MuddyWater_fake_pgn_dropper {
+	meta:
+		description = "Yara Rule for MuddyWater fake image dropper"
+		author = "Yoroi ZLab - Cybaze"
+		last_updated = "2018-12-05"
+		tlp = "white"
+		category = "informational"
+	strings:
+		$a = "I0B+XlhBQUFBQT09L00rQ0QrfTRMf21EY0pxL15EYndPIFV0K15zSipSSSFVfkoxL"
+		$b = "1mdW5jdGlvbihzLGQpe3ZhciB1PVtdLHY9MHgwLHcseD0nJyx5PScn"
+	condition:
+		 all of them
+}
+
+rule MuddyWater_encrypted_POWERSTATS {
+	meta:
+		description = "Yara Rule for MuddyWater encrypted backdoor"
+		author = "Yoroi ZLab - Cybaze"
+		last_updated = "2018-12-05"
+		tlp = "white"
+		category = "informational"
+	strings:
+		$a = "256/8Z2S63F,17P1P?20N,-(1AR38(.E/,Y7/VB->V0E,.1J1L*0?H-"
+		$b = "0E-13./)F/[-/L)/.I-*U/.F/*@3AM37M2?T-=I3-J/BU-=?/GP,JN1Z<05I-)V/C-"
+	condition:
+		 all of them
+}
 
