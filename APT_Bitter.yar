@@ -1,7 +1,7 @@
 rule APT_Bitter_RTF_01:RTF OR DOCX
 {
 	meta:
-		author = "HONKOE"
+		author = "HONKONE"
 		md51 = "0F1E75A70FC90ADCA17710F7D65F205B"
 		md52 = "3D163CC7329ED049D3E32B5D11586236"
 		md53 = "4E09AA10E8F0C40E74733A9345695D84"
@@ -79,12 +79,46 @@ rule APT_Bitter_Downloader_PE_01 : Bitter Downloader
     	$pdb12 = "E:\\RATFUD\\dllhost\\Release\\dllhost.pdb" wide nocase ascii
     	$pdb13 = "C:\\Users\\pc5\\Documents\\Visual Studio 2008\\Projects\\WMIS\\Release\\WMIS.pdb" wide nocase ascii
     	$pdb14 = "D:\\MyWork\\VisualSudio\\mwow\\Debug\\mwow.pdb" wide nocase ascii
-    	$pdb15 = "c:\\Users\\Dexter\\Documents\\Visual Studio 2008\\Projects\\1\\Release\\1_3.pdbc:\\Users\\Dexter\\Documents\\Visual Studio 2008\\Projects\\1\\Release\\1_3.pdb" wide nocase ascii
-
-
-    	$pdb_re = /[\d\w]+\.pdb/ wide nocase ascii 
+    	$pdb15 = "c:\\Users\\Dexter\\Documents\\Visual Studio 2008\\Projects\\1\\Release\\1_3.pdb" wide nocase ascii
     condition:
         $PE_header and 3 of ($func*) and all of ($load_dll*) and 1 of ($pdb*)
 }
 
 
+rule APT_Bitter_Jan4: Bitter RTF Downloader
+{
+    meta:
+        author = "HONKONE"
+        description = "new rtf downloader for bitter"
+        date = "2019-01-04"
+    strings:
+        $rtf_hedaer = "{\\rt"
+        $str = /6A6B6C613A2F2F[\d\w]+/ ascii nocase
+        $func1 = "4372656174654469726563746F727941" nocase ascii
+        $func2 = "4C6F61644C69627261727941" nocase ascii
+        $func3 = "75726C6D6F6E2E646C6C" nocase ascii
+        $func4 = "6F776E6C6F6164546F46696C6541" nocase ascii
+        $func5 = "4D6F766546696C6541" nocase ascii
+        $func6 = "5368656C6C33322E646C6C" nocase ascii
+        $func7 = "5368656C6C4578656375746541" nocase ascii
+        $func8 = "6F70656E" nocase ascii
+    condition:
+        $str and $rtf_hedaer and all of ($func*)	
+}
+
+
+rule APT_Bitter_Jan4_RAR2EXE : Bitter RAR2EXE
+{
+    meta:
+        author = "HONKONE"
+        description = "RAR2EXE"
+        date = "2019-01-04"
+    strings:
+        $str1 = "CMT;The comment below contains SFX script commands" nocase ascii wide
+        $str2 = "Path" nocase ascii
+        $str3 = /Setup=[\"\d\w\s]+\.[doc|docx|rtf]\"{0,1}/ nocase ascii
+        $str4 = "Silent" nocase ascii
+        $str5 = "Overwrite" nocase ascii
+    condition:
+        uint16(0) == 0x5A4D and all of ($str*)
+}

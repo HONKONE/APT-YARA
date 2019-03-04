@@ -1,4 +1,4 @@
-rule APT_APT32_PS_Nov5 : 
+rule APT_APT32_PS_Nov5
 {
     meta:
         author = "HONKONE"
@@ -12,5 +12,5 @@ rule APT_APT32_PS_Nov5 :
         $fuc_en5 = {EB 55 2E 3B} /*HttpOpenRequestW*/
         
     condition:
-        $str or $bytes
+        all of them
 }
